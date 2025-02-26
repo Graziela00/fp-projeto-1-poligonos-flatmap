@@ -195,6 +195,12 @@ public class PoligonosApp extends Application {
                 .map(listaPontos -> {
                     final var primeiroPonto = listaPontos.get(0);
                     final var ultimoPonto = listaPontos.get(listaPontos.size() - 1);
+                    return Stream.concat(listaPontos.stream(), Stream.of(primeiroPonto))
+                            .reduce(new Point(ultimoPonto.x(), ultimoPonto.y()), Point::new);
+                })
+                .map(Point::distance)
+                .toList();
+    }
     }
 
 
