@@ -131,7 +131,23 @@ public class PoligonosApp extends Application {
      * "triângulo", "pentágono", "hexágono" ou apenas um "polígono" geral quando tiver mais de 6 lados.
      */
     protected List<String> tipoPoligonos(){
-
+        return pontosPoligonos.stream()
+                .map(List::size)
+                .map(size -> {
+                    switch (size) {
+                        case 3:
+                            return "Triângulo";
+                        case 4:
+                            return "Quadrilátero";
+                        case 5:
+                            return "Pentágono";
+                        case 6:
+                            return "Hexágono";
+                        default:
+                            return "Polígono";
+                    }
+                })
+                .toList();
     }
 
     /**
